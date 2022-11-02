@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.capstone.qwirkle">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Qwirkle">
+        <activity
+            android:name=".views.finalScroll"
+            android:exported="false" />
+        <activity
+            android:name=".views.scrollgrid"
+            android:exported="false" />
+        <activity
+            android:name=".boardActivity"
+            android:exported="false" />
         <activity
             android:name=".views.ConnectActivity"
             android:exported="false" />

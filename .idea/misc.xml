@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Themba/AndroidStudioProjects/Qwirkle/app/src/main/res/drawable/handcontainer.xml" value="0.1875" />
+        <entry key="..\:/Users/Themba/AndroidStudioProjects/Qwirkle/app/src/main/res/drawable/swap.xml" value="0.1875" />
+        <entry key="..\:/Users/Themba/AndroidStudioProjects/Qwirkle/app/src/main/res/drawable/swap_button.xml" value="0.1875" />
+        <entry key="..\:/Users/Themba/AndroidStudioProjects/Qwirkle/app/src/main/res/layout/activity_board.xml" value="0.2" />
+        <entry key="..\:/Users/Themba/AndroidStudioProjects/Qwirkle/app/src/main/res/layout/activity_connect.xml" value="0.184375" />
+        <entry key="..\:/Users/Themba/AndroidStudioProjects/Qwirkle/app/src/main/res/layout/activity_final_scroll.xml" value="0.15806159420289856" />
+        <entry key="..\:/Users/Themba/AndroidStudioProjects/Qwirkle/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Themba/AndroidStudioProjects/Qwirkle/app/src/main/res/layout/activity_play.xml" value="0.22" />
+        <entry key="..\:/Users/Themba/AndroidStudioProjects/Qwirkle/app/src/main/res/layout/activity_scrollgrid.xml" value="0.15806159420289856" />
+        <entry key="..\:/Users/Themba/AndroidStudioProjects/Qwirkle/app/src/main/res/layout/scrollgrid1.xml" value="0.15806159420289856" />
         <entry key="..\:/Users/s219055009/StudioProjects/Qwirkle/app/src/main/res/font/carter_one.xml" value="0.3212962962962963" />
         <entry key="..\:/Users/s219055009/StudioProjects/Qwirkle/app/src/main/res/layout/activity_connect.xml" value="0.25" />
         <entry key="..\:/Users/s219055009/StudioProjects/Qwirkle/app/src/main/res/layout/activity_main.xml" value="0.33" />

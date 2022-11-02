@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void exit(View view){
-        finishAffinity();
+       // finishAffinity();
+        Intent intent=new Intent(getApplicationContext(),finalScroll.class);
+        startActivity(intent);
     }
 }
