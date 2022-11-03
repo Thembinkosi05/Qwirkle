@@ -23,11 +23,6 @@ public class hand {
 
     public void initTileView(viewTile... viewTiles){
         tileViews.addAll(Arrays.asList(viewTiles));
-        if (!die.isEmpty()) {
-            for (int i = 0; i < die.size(); i++) {
-                diceViews.get(i).setDice(die.get(i));
-            }
-        }
     }
 
 

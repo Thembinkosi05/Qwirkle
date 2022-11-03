@@ -33,17 +33,137 @@ public class viewTile extends AppCompatImageButton {
 
     public void setTile(Tile tile) {
         this.tile = tile;
-        setImageResource(R.drawable.blue_circle);
         switch (tile.getShape()){
-            case CIRCLE:setShape(tile.getColour());
+            case CIRCLE:setCircle(tile.getColour());
+            break;
+            case CLUB:setClub(tile.getColour());
+            break;
+            case STAR:setStar(tile.getColour());
+            break;
+            case CROSS:setCross(tile.getColour());
+            break;
+            case SQUARE:setSquare(tile.getColour());
+            break;
+            case DIAMOND: setDiamond(tile.getColour());
+            break;
         }
     }
 
-    private void setShape(Tile.Colour Colour ) {
-        switch(Colour){
-            case RED:
+    public Tile getTile(){
+        return tile;
+    }
+
+    private void setDiamond(Tile.Colour colour) {
+        switch(colour){
+            case RED:setImageResource(R.drawable.red_diamond);
+                break;
+            case BLUE:setImageResource(R.drawable.blue_diamond);
+                break;
+            case GREEN:setImageResource(R.drawable.green_diamond);
+                break;
+            case ORANGE:setImageResource(R.drawable.orange_diamond);
+                break;
+            case PURPLE:setImageResource(R.drawable.purple_diamond);
+                break;
+            case YELLOW:setImageResource(R.drawable.yellow_diamond);
+                break;
         }
     }
+
+    private void setSquare(Tile.Colour colour) {
+        switch(colour){
+            case RED:setImageResource(R.drawable.red_square);
+                break;
+            case BLUE:setImageResource(R.drawable.blue_square);
+                break;
+            case GREEN:setImageResource(R.drawable.green_square);
+                break;
+            case ORANGE:setImageResource(R.drawable.orange_square);
+                break;
+            case PURPLE:setImageResource(R.drawable.purple_square);
+                break;
+            case YELLOW:setImageResource(R.drawable.yellow_square);
+                break;
+        }
+    }
+
+    private void setClub(Tile.Colour colour) {
+        switch(colour){
+            case RED:setImageResource(R.drawable.red_four_points_star);
+                break;
+            case BLUE:setImageResource(R.drawable.blue_four_points_star);
+                break;
+            case GREEN:setImageResource(R.drawable.green_four_points_star);
+                break;
+            case ORANGE:setImageResource(R.drawable.orange_four_points_star);
+                break;
+            case PURPLE:setImageResource(R.drawable.purple_four_points_star);
+                break;
+            case YELLOW:setImageResource(R.drawable.yellow_four_points_star);
+                break;
+        }
+    }
+
+    private void setStar(Tile.Colour colour) {
+        switch(colour){
+            case RED:setImageResource(R.drawable.red_eight_points_star);
+                break;
+            case BLUE:setImageResource(R.drawable.blue_eight_points_star);
+                break;
+            case GREEN:setImageResource(R.drawable.green_eight_points_star);
+                break;
+            case ORANGE:setImageResource(R.drawable.orange_eight_points_star);
+                break;
+            case PURPLE:setImageResource(R.drawable.purple_eight_points_star);
+                break;
+            case YELLOW:setImageResource(R.drawable.yellow_eight_points_star);
+                break;
+        }
+    }
+
+    private void setCross(Tile.Colour colour) {
+        switch(colour){
+            case RED:setImageResource(R.drawable.red_clover);
+                break;
+            case BLUE:setImageResource(R.drawable.blue_clover);
+                break;
+            case GREEN:setImageResource(R.drawable.green_clover);
+                break;
+            case ORANGE:setImageResource(R.drawable.orange_clover);
+                break;
+            case PURPLE:setImageResource(R.drawable.purple_clover);
+                break;
+            case YELLOW:setImageResource(R.drawable.yellow_clover);
+                break;
+        }
+    }
+
+    private void setCircle(Tile.Colour Colour ) {
+        switch(Colour){
+            case RED:setImageResource(R.drawable.red_circle);
+            break;
+            case BLUE:setImageResource(R.drawable.blue_circle);
+            break;
+            case GREEN:setImageResource(R.drawable.green_circle);
+            break;
+            case ORANGE:setImageResource(R.drawable.orange_circle);
+            break;
+            case PURPLE:setImageResource(R.drawable.purple_circle);
+            break;
+            case YELLOW:setImageResource(R.drawable.yellow_circle);
+            break;
+        }
+    }
+
+    public void setParentWidth(int parentWidth) {
+        this.parentWidth = parentWidth;
+    }
+
+    public void setParentHeight(int parentHeight) {
+        this.parentHeight = parentHeight;
+    }
+
+
 
     public void setAnimVar(int dx, int dy) {
         this.dx = dx;

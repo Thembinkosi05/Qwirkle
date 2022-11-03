@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:id="@+id/TileContainer"
+            android:id="@+id/tileContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="top"
@@ -122,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_marginTop="5dip">
                     <TableLayout
-                        android:id="@+id/playerBoard"
+                        android:id="@+id/playBoard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#070707"

@@ -7,7 +7,7 @@
     tools:context=".views.boardActivity">
 
     <TableLayout
-        android:id="@+id/playerBoard"
+        android:id="@+id/playBoard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#070707"
