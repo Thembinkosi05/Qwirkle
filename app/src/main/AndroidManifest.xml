@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Qwirkle">
         <activity
+            android:name=".views.ConnectPlayers"
+            android:exported="false" />
+        <activity
             android:name=".views.finalScroll"
             android:exported="false" />
         <activity
