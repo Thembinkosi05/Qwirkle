@@ -5,11 +5,11 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+
 import com.capstone.qwirkle.views.*;
 
 public class hand {
-
-    public static int initialTileNumber = 108;
 
     int width;
     int height;
@@ -23,6 +23,18 @@ public class hand {
 
     public void initTileView(viewTile... viewTiles){
         tileViews.addAll(Arrays.asList(viewTiles));
+    }
+
+    public void setRandomAccel() {
+        Random ran = new Random();
+
+        for (viewTile dice : tileViews) {
+            dice.setAnimVar(ran.nextInt(25) - 15, ran.nextInt(25) - 15);
+        }
+    }
+
+    public void setDiceViews(List<viewTile> tileViews) {
+        this.tileViews = tileViews;
     }
 
 

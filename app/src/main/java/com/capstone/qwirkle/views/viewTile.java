@@ -21,14 +21,20 @@ public class viewTile extends AppCompatImageButton {
 
     public viewTile(@NonNull Context context) {
         super(context);
+        defaultX = getX();
+        defaultY = getY();
     }
 
     public viewTile(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        defaultX = getX();
+        defaultY = getY();
     }
 
     public viewTile(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        defaultX = getX();
+        defaultY = getY();
     }
 
     public void setTile(Tile tile) {
@@ -163,11 +169,44 @@ public class viewTile extends AppCompatImageButton {
         this.parentHeight = parentHeight;
     }
 
-
-
     public void setAnimVar(int dx, int dy) {
         this.dx = dx;
         this.dy = dy;
     }
 
+    public void resetPos() {
+        setX(defaultX);
+        setY(defaultY);
+    }
+    public float getDefaultX() {
+        return defaultX;
+    }
+
+    public void setDefaultX(float defaultX) {
+        this.defaultX = defaultX;
+    }
+
+    public float getDefaultY() {
+        return defaultY;
+    }
+
+    public void setDefaultY(float defaultY) {
+        this.defaultY = defaultY;
+    }
+
+    public void setDx(float dx) {
+        this.dx = dx;
+    }
+
+    public void setDy(float dy) {
+        this.dy = dy;
+    }
+
+    public float getDx() {
+        return dx;
+    }
+
+    public float getDy() {
+        return dy;
+    }
 }

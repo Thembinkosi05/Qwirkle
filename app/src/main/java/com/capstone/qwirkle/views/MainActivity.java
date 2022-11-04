@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.capstone.qwirkle.NumberOfPlayers;
 import com.capstone.qwirkle.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void exit(View view){
        // finishAffinity();
-        Intent intent=new Intent(getApplicationContext(),finalScroll.class);
+        Intent intent=new Intent(getApplicationContext(), NumberOfPlayers.class);
         startActivity(intent);
     }
 }

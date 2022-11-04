@@ -12,13 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Qwirkle">
         <activity
+            android:name=".NumberOfPlayers"
+            android:exported="false" />
+        <activity
             android:name=".views.ConnectPlayers"
-            android:exported="false" />
-        <activity
-            android:name=".views.finalScroll"
-            android:exported="false" />
-        <activity
-            android:name=".views.scrollgrid"
             android:exported="false" />
         <activity
             android:name=".boardActivity"

@@ -3,24 +3,30 @@ package com.capstone.qwirkle.views;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.capstone.qwirkle.R;
+import com.capstone.qwirkle.controller.GameController;
 import com.capstone.qwirkle.models.Tile;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Timer;
 
 public class playActivity extends AppCompatActivity {
 
@@ -28,9 +34,16 @@ public class playActivity extends AppCompatActivity {
     viewTile tile1,tile2,tile3,tile4,tile5,tile6;
     TableLayout playBoard;
     List<viewTile> viewTileList;
+    GameController gameController;
+    TextView curPlayer;
+    Spinner numOfPlayers;
 
     private int screenWidth;
     private int screenHeight;
+
+    //handlers and timers
+    private Handler handler;
+    private Timer timer;
 
 
     @Override
@@ -41,17 +54,31 @@ public class playActivity extends AppCompatActivity {
 
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
+        initTileView();
+
+        //get current player
+        int num =2;
+        Intent intent = getIntent();
+        if (intent != null) {
+            Bundle bundle = intent.getExtras();
+            if (bundle != null) {
+                num = bundle.getInt("numOfPlayers");
+            }
+        }
+        gameController= new GameController(num,this);
     }
 
 
     private void getReferences(){
         tileContainer = findViewById(R.id.tileContainer);
-        playBoard = findViewById(playBoard.getId());
+        playBoard = findViewById(R.id.playBoard);
+        curPlayer = findViewById(R.id.curPlayer);
+        numOfPlayers = findViewById(R.id.numOfPlayers);
     }
 
     private void initTileView(){
 
-        viewTileList = new ArrayList<>(9);
+        viewTileList = new ArrayList<>(6);
 
         tile1 = findViewById(R.id.tile1);
         tile1.setParentHeight(screenHeight);
@@ -81,6 +108,7 @@ public class playActivity extends AppCompatActivity {
 
         initDragDropDView();
     }
+
 
     private void initDragDropDView() {
         viewTileList.forEach(VwDice -> VwDice.setOnTouchListener((v, event) -> {
@@ -130,6 +158,7 @@ public class playActivity extends AppCompatActivity {
             return false;
         }));
     }
+    /**
     private void initDragListener(ImageView view) {
         view.setOnDragListener((v, event) -> {
             // Defines a variable to store the action type for the incoming event
@@ -234,7 +263,7 @@ public class playActivity extends AppCompatActivity {
             view.setBackgroundColor(getResources().getColor(R.color.colorWhite, view.getContext().getTheme()));
             return false;
         });
-    }
+    }*/
 
     private int[] getCellCoordinates(ImageView view) {
         for (int row = 0; row < 4; row++) {
@@ -248,8 +277,7 @@ public class playActivity extends AppCompatActivity {
     }
 
     private ImageView getTblCell(int x, int y) {
-        TableRow row = (TableRow) tblBoard.getChildAt(x);
-
+        TableRow row = (TableRow) playBoard.getChildAt(x);
         return (ImageView) row.getChildAt(y);
     }
 }
