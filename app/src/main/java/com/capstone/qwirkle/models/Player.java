@@ -8,15 +8,21 @@ public class Player implements Serializable {
     public String username;
     public int points;
     private int gameID;
+    public  int playerNo;
 
-    public Player(ArrayList<Tile> hand) {
+    public Player(ArrayList<Tile> hand, int playerNo) {
         //this.username=username;
         points = 0;
         this.hand = hand;
+        this.playerNo = playerNo;
     }
 
-    public void setGameID(int gameIndex) {
-        gameID = gameIndex;
+    public int getPlayerNo() {
+        return playerNo;
+    }
+
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
     }
 
     public ArrayList<Tile> getHand() {
@@ -37,5 +43,9 @@ public class Player implements Serializable {
 
     public void setPoints(int points) {
         this.points += points;
+    }
+
+    public void placeTile(){
+
     }
 }

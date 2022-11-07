@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background = "@color/colorGray"
     tools:context=".views.playActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -192,16 +193,6 @@
 
                         <ImageView
                             android:id="@+id/imageView6"
-                            android:layout_width="@dimen/board_block_size"
-                            android:layout_height="@dimen/board_block_size"
-                            android:layout_margin="6dp"
-                            android:background="@color/colorGray"
-                            android:padding="3dp"
-                            android:scaleType="fitXY"
-                            tools:srcCompat="@android:color/background_light" />
-
-                        <ImageView
-                            android:id="@+id/imageView7"
                             android:layout_width="@dimen/board_block_size"
                             android:layout_height="@dimen/board_block_size"
                             android:layout_margin="6dp"
@@ -613,7 +604,60 @@
         android:id="@+id/curPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="80dp"
         android:text="TextView"
-        tools:layout_editor_absoluteY="7dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="162dp"
+        android:layout_marginEnd="161dp"
+        android:layout_marginBottom="19dp"
+        android:onClick="Done"
+        android:text="@string/done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/swap"
+        android:layout_width="116dp"
+        android:layout_height="87dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/full_bag_min"
+        android:text_size=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="279dp" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:text="score"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/curPlayer" />
+
+    <LinearLayout
+        android:layout_width="285dp"
+        android:layout_height="81dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="1dp"></LinearLayout>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/player_score"
+        android:backgroundTint="@color/teal700"
+        android:text="Button"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="14dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

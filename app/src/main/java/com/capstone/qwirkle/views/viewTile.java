@@ -55,6 +55,8 @@ public class viewTile extends AppCompatImageButton {
         }
     }
 
+    public  void removeTile(){setImageResource(R.color.colorGray);
+    }
     public Tile getTile(){
         return tile;
     }
@@ -208,5 +210,10 @@ public class viewTile extends AppCompatImageButton {
 
     public float getDy() {
         return dy;
+    }
+
+    @Override
+    public boolean performClick() {
+        return super.performClick();
     }
 }

@@ -1,25 +1,40 @@
 package com.capstone.qwirkle.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Tile  implements Serializable {
 
     public enum Colour{ PURPLE,BLUE,GREEN,YELLOW,ORANGE,RED}
 
-    public enum Shape{ CLUB,STAR,SQUARE,DIAMOND,CROSS,CIRCLE}
+    public enum Shape{  SQUARE, CIRCLE, STAR, DIAMOND, CROSS, CLUB;}
 
-    public enum State{ IN_HAND,PLACED,PLACING,IN_BAG}
+    public enum State{ IN_HAND,PLACED,PLACING,IN_BAG,SWAPPING;
+    }
 
     public int col,row;
     public Shape Shape;
     public Colour Colour;
     public State state;
+    public ArrayList<Tile> verticalLine = new ArrayList<>();
+    public ArrayList<Tile> horizontalLine = new ArrayList<>();
+    public boolean isSelected = false;
+    public boolean checkNS = false;
+    public boolean checkEW = false;
+    public boolean counted = false;
 
 
-    public Tile(Colour colour,Shape shape, State state){
+    public Tile(Colour colour,Shape shape){
         this.Colour = colour;
         this.Shape = shape;
-        this.state = state;
+    }
+
+    public void setCounted(boolean counted) {
+        this.counted = counted;
+    }
+
+    public boolean isCounted() {
+        return counted;
     }
 
     public int getCol() {
@@ -60,6 +75,19 @@ public class Tile  implements Serializable {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    public void setLinesToNull() {
+        horizontalLine = null;
+        verticalLine = null;
     }
 
 
