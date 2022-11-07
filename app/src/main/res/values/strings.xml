@@ -6,6 +6,8 @@
     <string name="rules">Rules</string>
     <string name="play">Play</string>
     <string name="done">Done</string>
+    <string name="score">Score</string>
+    <string name="player">Player</string>
 
     <string name="number_players"><![CDATA[&#188;]]></string>
     <string name="waiting_for_players">Waiting For Players...</string>

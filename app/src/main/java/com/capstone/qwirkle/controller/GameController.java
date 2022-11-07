@@ -67,7 +67,7 @@ public class GameController {
         for(int i =0;i<playerTotal;i++){
             addPlayer(i+1);
         }
-       // setCurrentPlayer(players.get(0));
+        setCurrentPlayer(players.get(0));
     }
 
 
@@ -346,10 +346,23 @@ public class GameController {
         if (swapped) {
             shuffle();
             curPlayer.setHand(hand);
-            fillHand();
+            fillHandForSwap();
         }
     }
 
+
+    public void fillHandForSwap() {
+        while (curPlayer.getHand().size() < 6 && bag.size() > 1) {
+            Tile newTile = bag.remove(bag.size() - 1);
+            newTile.setSwapped(true);
+            curPlayer.getHand().add(newTile);
+            newTile.setState(Tile.State.IN_HAND);
+        }
+    }
+
+    /**
+     * fill hand of the current player
+     */
     public void fillHand() {
         while (curPlayer.getHand().size() < 6 && bag.size() > 1) {
             Tile newTile = bag.remove(bag.size() - 1);
@@ -367,7 +380,6 @@ public class GameController {
         if (players.size() == 1) curPlayer = players.get(0);
         return player;
     }
-
 
     public void placementScore(ArrayList<Tile> tiles){
         if(tiles.isEmpty())
@@ -529,4 +541,13 @@ public class GameController {
                 tile.setState(State.PLACED);
         }
     }
+
+    public void unswipe(){
+        for(Tile tile : curPlayer.getHand()){
+            tile.setSwapped(false);
+        }
+        curPlayer.setSwapping(false);
+    }
+
+
 }

@@ -22,9 +22,17 @@ public class Tile  implements Serializable {
     public boolean checkNS = false;
     public boolean checkEW = false;
     public boolean counted = false;
+    public boolean swapped = false;
 
+    public boolean isSwapped() {
+        return swapped;
+    }
 
-    public Tile(Colour colour,Shape shape){
+    public void setSwapped(boolean swapped) {
+        this.swapped = swapped;
+    }
+
+    public Tile(Colour colour, Shape shape){
         this.Colour = colour;
         this.Shape = shape;
     }

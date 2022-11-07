@@ -9,12 +9,29 @@ public class Player implements Serializable {
     public int points;
     private int gameID;
     public  int playerNo;
+    public boolean swapping =false; //is player currently swapping
+    public boolean placing = false; //is player currently placing
+
+    public boolean isSwapping() {
+        return swapping;
+    }
+
+    public void setSwapping(boolean swapping) {
+        this.swapping = swapping;
+    }
 
     public Player(ArrayList<Tile> hand, int playerNo) {
         //this.username=username;
         points = 0;
         this.hand = hand;
         this.playerNo = playerNo;
+    }
+    public boolean isPlacing() {
+        return placing;
+    }
+
+    public void setPlacing(boolean placing) {
+        this.placing = placing;
     }
 
     public int getPlayerNo() {
@@ -47,5 +64,10 @@ public class Player implements Serializable {
 
     public void placeTile(){
 
+    }
+
+    @Override
+    public String toString() {
+        return "Player " + playerNo;
     }
 }
