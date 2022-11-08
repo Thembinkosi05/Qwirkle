@@ -44,6 +44,7 @@
         android:backgroundTint="@color/teal_700"
         android:fontFamily="@font/carter_one"
         android:gravity="center"
+        android:onClick="connect"
         android:text="@string/start"
         android:textSize="24sp"
         app:cornerRadius="30dp"

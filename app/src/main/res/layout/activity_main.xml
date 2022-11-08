@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rsz_qwirkle_diy_02"
+    android:background="@drawable/qwirkle_diy_02"
     tools:context=".views.MainActivity">
 
     <Button

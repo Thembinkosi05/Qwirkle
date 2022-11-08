@@ -29,6 +29,7 @@ public class GameController {
 
     ArrayList<Tile> verticalLine; //the line north and south.
     ArrayList<Tile> horizontalLine; //the line east and west.
+
     public static final char ABOVE = 'A';
     public static final char BELOW = 'B';
     public static final char LEFT = 'L';

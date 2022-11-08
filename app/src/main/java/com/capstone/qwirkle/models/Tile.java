@@ -97,6 +97,4 @@ public class Tile  implements Serializable {
         horizontalLine = null;
         verticalLine = null;
     }
-
-
 }
