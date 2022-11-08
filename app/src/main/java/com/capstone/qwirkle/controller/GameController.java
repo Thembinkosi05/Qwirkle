@@ -29,6 +29,10 @@ public class GameController {
 
     ArrayList<Tile> verticalLine; //the line north and south.
     ArrayList<Tile> horizontalLine; //the line east and west.
+    public static final char ABOVE = 'A';
+    public static final char BELOW = 'B';
+    public static final char LEFT = 'L';
+    public static final char RIGHT = 'R';
 
     private enum Direction {
         NORTH(0, -1),
@@ -318,7 +322,7 @@ public class GameController {
         for (Tile tile : placeList) {
             if (tile.state.equals(Tile.State.PLACING)) {
                 hand.remove(tile);
-                //tile.setState(Tile.State.PLACED);
+                tile.setState(Tile.State.PLACED);
                 GameBoard.add(tile);
                 placed = true;
             }
@@ -387,35 +391,25 @@ public class GameController {
         Stream stream = tiles.stream().filter(tile -> tile.state.equals(State.PLACING));
         ArrayList<Tile> placingList = (ArrayList<Tile>)stream.collect(Collectors.toList());
         int points = getPoints(placingList);
-        curPlayer.setPoints(points);
-    /*    for(Tile tile : tiles){
+        /*
+        for(Tile tile : placingList){
             if(tile.getState().equals(State.PLACING)){
                 int row = tile.getRow();
                 int col = tile.getCol();
-                //down
-                while (getTileAt(row,col,tiles)!=null){
-
-                }
+                points =determineScore(tile);
             }
         }*/
+        curPlayer.setPoints(points);
     }
 
     int getPoints(ArrayList<Tile> tiles) {
-        // Starts off with 0 points
         int points = 0;
-        //iterate through the played tiles
         for (Tile tile : tiles) {
-            //each played za.nmu.mandela.qwirkle_game_client.Model.tile will have an East to West line
-            // and a North to South line
 
-            // Only applies to the first move.
             if (tile.verticalLine.size() == 1 && tile.horizontalLine.size() == 1) points += 1;
 
-            // Give points for number of tiles in the line.
             if (tile.verticalLine.size() > 1) {
                 for (Tile t : tile.verticalLine) {
-                    //check if za.nmu.mandela.qwirkle_game_client.Model.tile has been checked
-                    //if the check is false it has not been counted
                     if (!t.checkNS) {
                         points = points + 1;
                         t.checkNS = true;
@@ -442,6 +436,7 @@ public class GameController {
         }
         return points;
     }
+
 
     public void score(ArrayList<Tile> tiles){
         Toast.makeText(activity.getApplicationContext(), "Working", Toast.LENGTH_SHORT).show();
@@ -492,6 +487,10 @@ public class GameController {
         }
         curPlayer.setPoints(points);
     }
+
+    /**
+     * change turn of the current player to next player;
+     */
     public void changeTurn(){
         int currentIndex = players.indexOf(curPlayer);
         if((currentIndex+1)==players.size())
@@ -549,5 +548,74 @@ public class GameController {
         curPlayer.setSwapping(false);
     }
 
+    public Tile[] getLine(int row, int column, char direction) {
+        // Returns the line formed above, below, left or right of the indicated
+        // position.
+        // Blank tiles are returned as null objects.
+        Tile[] line = new Tile[6];
 
+        for (int i = 0; i < line.length; i++) {
+            Tile temp = null;
+            switch (direction) {
+                case ABOVE:
+                    temp = getTileAt(row - 1 - i, column,getGameBoard());
+                    break;
+                case BELOW:
+                    temp = getTileAt(row + 1 + i, column,getGameBoard());
+                    break;
+                case LEFT:
+                    temp = getTileAt(row, column - 1 - i,getGameBoard());
+                    break;
+                case RIGHT:
+                    temp = getTileAt(row, column + 1 + i,getGameBoard());
+                    break;
+            }
+            if (temp != null) // do not include blank tiles
+                line[i] = temp;
+            else // stop at the first blank space
+                break;
+        }
+        return line;
+    }
+
+    private int determineScore(Tile tileInPlay) {
+        int score = 1;
+        // get the location on the board of the tileholder that is being considered
+        int row = tileInPlay.getRow();
+        int column = tileInPlay.getCol();
+
+        // get need all surrounding tiles
+        Tile[] tilesAbove = getLine(row, column, ABOVE);
+        Tile[] tilesBelow = getLine(row, column, BELOW);
+        Tile[] tilesLeft = getLine(row, column, LEFT);
+        Tile[] tilesRight = getLine(row, column, RIGHT);
+
+        Tile[][] surrounding = { tilesAbove, tilesBelow, tilesLeft, tilesRight };
+
+        // see how many tiles are already in the rows that are attached.
+        for (int i = 0; i < surrounding.length; i++) {
+            for (int j = 0; j < surrounding[i].length; j++) {
+                if (surrounding[i][j] != null) score += 1;
+                else // stop counting once a null tile is found
+                    break;
+            }
+        }
+
+        int quirkleCount = 0;
+
+        // check for a Qwirkle
+        for (int i = 0; i < surrounding.length; i++) {
+            for (int j = 0; j < surrounding[i].length; j++) {
+                if (surrounding[i][j] != null) quirkleCount++;
+                else // stop counting once a null tile is found
+                    break;
+            }
+
+            if (quirkleCount == 5) score += 6;
+
+            quirkleCount = 0;
+        }
+
+        return score;
+    }
 }

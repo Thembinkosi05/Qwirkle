@@ -12,6 +12,7 @@
     <string name="number_players"><![CDATA[&#188;]]></string>
     <string name="waiting_for_players">Waiting For Players...</string>
     <string name="start_game_msg">Starting Game Shortly...</string>
+    <string name="game_over">GAME OVER</string>
     <string-array name="players">
         <item>2</item>
         <item>3</item>

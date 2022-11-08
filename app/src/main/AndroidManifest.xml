@@ -6,19 +6,19 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/qwirkle_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/qwirkle_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Qwirkle">
+        <activity
+            android:name=".WinningActivity"
+            android:exported="false" />
         <activity
             android:name=".NumberOfPlayers"
             android:exported="false" />
         <activity
             android:name=".views.ConnectPlayers"
-            android:exported="false" />
-        <activity
-            android:name=".boardActivity"
             android:exported="false" />
         <activity
             android:name=".views.ConnectActivity"

@@ -57,7 +57,7 @@ public class playActivity extends AppCompatActivity {
         initTileView();
         generateBoard();
         generateSwap();
-       // onTileSelected();
+       //onTileSelected();
 
         //get current player
         int num =2;
@@ -70,6 +70,7 @@ public class playActivity extends AppCompatActivity {
         }
 
         gameController= new GameController(num,this);
+
         gameController.setCurrentPlayer(gameController.getPlayers().get(0));
         setHandTile(gameController.curPlayer);
         curPlayer.setText("player 1");
@@ -95,6 +96,7 @@ public class playActivity extends AppCompatActivity {
         gameController.fillHand();
         gameController.placementScore(gameController.getGameBoard());
         gameController.unswipe();
+        gameController.curPlayer.setPlacing(false);
         gameController.changeTurn();
         setHandTile(gameController.curPlayer);
         curPlayer.setText("player "+gameController.curPlayer.getPlayerNo());
@@ -375,12 +377,12 @@ public class playActivity extends AppCompatActivity {
                         //view.setEnabled(false);
                         tile.setRow(coord[0]);
                         tile.setCol(coord[1]);
-                        tile.setState(Tile.State.PLACING);
                         gameController.curPlayer.setPlacing(true);
+                        tile.setState(Tile.State.PLACING);
                         gameController.addToBoard(gameController.curPlayer.getHand());
+                        tile.setState(Tile.State.PLACING);
                         ((viewTile)draggedView).removeTile();
-
-                    //   draggedView.setVisibility(View.INVISIBLE);
+                        //draggedView.setVisibility(View.INVISIBLE);
 
                         // Turns off any color tints
                         view.setBackgroundColor(getResources().getColor(R.color.white, view.getContext().getTheme()));
@@ -462,6 +464,11 @@ public class playActivity extends AppCompatActivity {
                             gameController.swapPieces(gameController.curPlayer.getHand());
                             ((viewTile)draggedView).removeTile();
                             setHandTile(gameController.curPlayer);
+                            Toast.makeText(this, "dice has been swapped", Toast.LENGTH_SHORT).show();
+                            //swap sound here
+                        }else {
+                            //error swap sound here
+                            Toast.makeText(this, "swap is not allowed", Toast.LENGTH_SHORT).show();
                         }
 
                         // Invalidates the view to force a redraw
@@ -471,9 +478,9 @@ public class playActivity extends AppCompatActivity {
                     case DragEvent.ACTION_DRAG_ENDED:
 
                         if (event.getResult()) {
-                            Toast.makeText(this, "dice has been swapped", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(this, "dice has been swapped", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(this, "dice not swapped.", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(this, "dice not swapped.", Toast.LENGTH_SHORT).show();
                         }
                         view.invalidate();
                         // returns true; the value is ignored.

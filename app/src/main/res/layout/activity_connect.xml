@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rsz_qwirkle_diy_02"
+    android:background="@drawable/qwirkle_diy_02"
     tools:context=".views.ConnectActivity">
 
     <EditText
@@ -41,10 +41,11 @@
         android:layout_width="270dp"
         android:layout_height="62dp"
         android:layout_marginBottom="84dp"
+        android:backgroundTint="@color/teal_700"
         android:fontFamily="@font/carter_one"
+        android:gravity="center"
         android:text="@string/start"
         android:textSize="24sp"
-        android:gravity="center_horizontal"
         app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/playerName"
@@ -61,4 +62,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/abc_vector_test" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/qwirkle_logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
