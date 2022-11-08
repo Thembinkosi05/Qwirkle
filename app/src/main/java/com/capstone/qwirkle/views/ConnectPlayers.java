@@ -20,16 +20,18 @@ public class ConnectPlayers extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connect_players);
+        setContentView(R.layout.activity_waiting_for_players);
         numPlayers = findViewById(R.id.txtNumPlayers);
         listConnectedPlayers = findViewById(R.id.listPlayers);
     }
+
 
     public void updateNumPlayers(int curNum) {
         numPlayers.setText(String.format(Locale.getDefault(), "%d/4", curNum));
         if (curNum == 4)
             txtWaitPlayers.setText(this.getString(R.string.start_game_msg));
     }
+
 
     public void startGame(){
         Intent intent=new Intent(getApplicationContext(),playActivity.class);

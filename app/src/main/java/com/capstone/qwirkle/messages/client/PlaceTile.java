@@ -9,10 +9,10 @@ import com.capstone.qwirkle.models.Tile;
 import java.util.Locale;
 
 public class PlaceTile extends Message {
+    private static final long serialVersionUID = 2L;
     public Tile tile;
     public int row;
     public int col;
-    public int posDiceInPool;
     public Player player;
 
     public PlaceTile(Tile tile , int row, int col, Player player) {

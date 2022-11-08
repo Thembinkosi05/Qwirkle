@@ -6,7 +6,7 @@ import com.capstone.qwirkle.models.Player;
 import java.util.List;
 
 public class Joined extends Message {
-    private static final long serialVersionUID = 102L;
+    private static final long serialVersionUID = 104L;
 
     public String lobbyID;
     public List<Player> players;

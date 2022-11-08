@@ -1,4 +1,4 @@
-package com.capstone.qwirkle;
+package com.capstone.qwirkle.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import com.capstone.qwirkle.R;
 import com.capstone.qwirkle.models.Player;
 import com.capstone.qwirkle.views.ConnectActivity;
 import com.capstone.qwirkle.views.MainActivity;

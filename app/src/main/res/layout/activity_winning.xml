@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/qwirkle_diy_02"
-    tools:context=".WinningActivity">
+    tools:context=".views.WinningActivity">
 
     <Button
         android:id="@+id/btnDone"

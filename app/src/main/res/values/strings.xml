@@ -13,6 +13,9 @@
     <string name="waiting_for_players">Waiting For Players...</string>
     <string name="start_game_msg">Starting Game Shortly...</string>
     <string name="game_over">GAME OVER</string>
+    <string name="game_title">Playing Qwirkle</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="quit">Quit</string>
     <string-array name="players">
         <item>2</item>
         <item>3</item>

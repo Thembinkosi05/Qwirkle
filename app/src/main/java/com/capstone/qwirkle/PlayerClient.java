@@ -35,7 +35,6 @@ public class PlayerClient {
     private Thread writeThread;
 
 
-
     /**
      * Enqueues a message to be sent to the server.
      * @param message The message being sent.
@@ -98,8 +97,8 @@ public class PlayerClient {
     /**
      * Send the dice played at the end of a turn with its coordinates
      */
-    public void sendTilePlaced(Tile tile, int row, int col, Player appHostPlayer) {
-        send(new PlaceTile(tile, row, col, appHostPlayer));
+    public void sendTilePlaced(Tile tile, int row, int col, Player curPlayer) {
+        send(new PlaceTile(tile, row, col, curPlayer));
     }
 
     /**

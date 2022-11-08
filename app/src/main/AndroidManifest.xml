@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Qwirkle">
         <activity
-            android:name=".WinningActivity"
+            android:name=".views.WinningActivity"
             android:exported="false" />
         <activity
             android:name=".NumberOfPlayers"
