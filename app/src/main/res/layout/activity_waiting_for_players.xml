@@ -31,10 +31,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@strings/number_players"
         android:textColor="#FF000000"
         android:textSize="30sp"
-        tools:text="1/4" />
+        tools:text="@string/number_players" />
 
     <TextView
         android:id="@+id/textView"

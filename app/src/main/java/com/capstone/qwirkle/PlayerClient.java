@@ -7,7 +7,8 @@ import com.capstone.qwirkle.messages.MessageReceiver;
 import com.capstone.qwirkle.messages.client.Join;
 import com.capstone.qwirkle.messages.client.PlaceTile;
 import com.capstone.qwirkle.messages.client.Quit;
-import com.capstone.qwirkle.messages.server.SetUsername;
+import com.capstone.qwirkle.messages.client.SetHandle;
+import com.capstone.qwirkle.messages.server.handleSet;
 import com.capstone.qwirkle.models.Player;
 import com.capstone.qwirkle.models.Tile;
 
@@ -27,6 +28,8 @@ public class PlayerClient {
 
     private BlockingQueue<Message> outgoingMessages;
     private MessageReceiver messageReceiver;
+    private StartGame startGame;
+    String username;
 
     // Thread that reads messages from the server.
     private Thread readThread;
@@ -47,10 +50,11 @@ public class PlayerClient {
         }
     }
 
-    public PlayerClient(MessageReceiver messageReceiver) {
+    public PlayerClient(MessageReceiver messageReceiver, StartGame startGame) {
         super();
         outgoingMessages = new LinkedBlockingQueue<>();
         this.messageReceiver = messageReceiver;
+        this.startGame =startGame;
     }
 
 
@@ -61,13 +65,14 @@ public class PlayerClient {
     /**
      * Establish a connection to the server.
      * @param serverAddress The server's address.
-     * @param name The name to be used for the client.
+     * @param username The name to be used for the client.
      */
-    public void connect(String serverAddress, String name) {
+    public void connect(String serverAddress, String username) {
         Log.i(TAG, "Connecting to " + serverAddress + "...");
 
         // Cache info.
         this.serverAddress = serverAddress;
+        this.username = username;
         // Details about the client.
 
         // Start the read thread (which establishes a connection.
@@ -76,15 +81,15 @@ public class PlayerClient {
         readThread.start();
 
         // Send the setHandle message.
-        Log.i(TAG, "Queuing SetName(" + name + ")");
-        send(new SetUsername(name));
+        Log.i(TAG, "Queuing SetName(" + username + ")");
+        send(new Join(username));
     }
 
     /**
      * join a lobby on the server.
      */
     public void joinLobby() {
-        send(new Join());
+        send(new Join(username));
     }
 
     /**

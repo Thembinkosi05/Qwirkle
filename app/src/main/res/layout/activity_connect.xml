@@ -101,7 +101,7 @@
             android:layout_height="61dp"
             android:layout_marginTop="40dp"
             android:fontFamily="@font/carter_one"
-            android:onClick="openGameActivity"
+            android:onClick="onStartButton"
             android:text="@string/start"
             android:textSize="20sp" />
 
