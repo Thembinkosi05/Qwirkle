@@ -9,13 +9,15 @@ import com.capstone.qwirkle.models.Player;
 import com.capstone.qwirkle.models.Tile;
 import com.capstone.qwirkle.models.Tile.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class GameController {
+public class GameController implements Serializable {
+    //private static final long serialVersionUID = 73L;
 
     private ArrayList<Tile> bag = new ArrayList<>();
     private ArrayList<Tile> GameBoard = new ArrayList<>();
@@ -60,12 +62,7 @@ public class GameController {
     }
 
 
-    public GameController(int playerTotal, Activity activity) {
-        this.playerTotal=playerTotal;
-        isReady=false;
-        this.activity = activity;
-        initialAllTiles();
-        addPlayers(playerTotal);
+    public GameController() {
     }
 
     private void addPlayers(int playerTotal) {

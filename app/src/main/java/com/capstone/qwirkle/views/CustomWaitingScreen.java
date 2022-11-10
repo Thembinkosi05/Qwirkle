@@ -34,7 +34,6 @@ public class CustomWaitingScreen {
 
     public void startWaitingDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-
         LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.activity_waiting_for_players, null);
         builder.setView(view);

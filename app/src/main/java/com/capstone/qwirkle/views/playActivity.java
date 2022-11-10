@@ -43,10 +43,6 @@ public class playActivity extends AppCompatActivity {
     Spinner numOfPlayers;
     LinearLayout mainPlayers,one_player,layout2,layout3,layout4;
 
-    //handlers and timers
-    private Handler handler;
-    private Timer timer;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,39 +53,21 @@ public class playActivity extends AppCompatActivity {
         initTileView();
         generateBoard();
         generateSwap();
-       //onTileSelected();
 
-        //get current player
-        int num =2;
         Intent intent = getIntent();
         if (intent != null) {
             Bundle bundle = intent.getExtras();
             if (bundle != null) {
-                num = bundle.getInt("numOfPlayers");
+                gameController = bundle.getParcelable("gameController");
+                Toast.makeText(this, "game controller is not null.", Toast.LENGTH_SHORT).show();
             }
-        }
+            else {
+                Toast.makeText(this, "bundle is null.", Toast.LENGTH_SHORT).show();
+            }
+        }else {
+        Toast.makeText(this, "intent is null", Toast.LENGTH_SHORT).show();}
 
-        gameController= new GameController(num,this);
-
-        gameController.setCurrentPlayer(gameController.getPlayers().get(0));
-        setHandTile(gameController.curPlayer);
-        curPlayer.setText("player 1");
         bagSize.setText(gameController.getBag().size()+"");
-
-        for(int i=1;i<gameController.getPlayers().size();i++){
-            if(i+1==2){
-                p2.setText(gameController.getPlayers().get(i).toString());
-                s2.setText(gameController.getPlayers().get(i).getPoints()+"");
-            }
-            if(i+1==3){
-                p3.setText(gameController.getPlayers().get(i).toString());
-                s3.setText(gameController.getPlayers().get(i).getPoints()+"");
-            }
-            if(i+1==4){
-                p4.setText(gameController.getPlayers().get(i).toString());
-                s4.setText(gameController.getPlayers().get(i).getPoints()+"");
-            }
-        }
     }
 
     public void Done(View view){
@@ -175,113 +153,6 @@ public class playActivity extends AppCompatActivity {
         }));
     }
 
-    /**
-    private void initDragListener(ImageView view) {
-        view.setOnDragListener((v, event) -> {
-            // Defines a variable to store the action type for the incoming event
-          //  if(player.isTurn()) {
-                final int action = event.getAction();
-
-                View draggedView = (View) event.getLocalState();
-                if (draggedView instanceof viewTile) {
-                    viewTile tileView = (viewTile) draggedView;
-                    tileView.setTag("TILE");
-                    Tile dice = tileView.getTile();
-                    int[] coord = getCellCoordinates(view);
-
-                //    Window playerWindow = player.getWindow();
-
-                    if (coord[0] != -1) //Check that the current view is valid to accept the dice
-                        switch (action) {
-
-                            case DragEvent.ACTION_DRAG_STARTED:
-
-                                // Determines if this View can accept the dragged data
-                                Log.d(tileView.getTag().toString(), "DRAG_STARTED AND LISTENING");
-                              //  v.setBackgroundColor(getResources().getColor(R.color.colorDiceGreen, view.getContext().getTheme()));
-
-                                return true;
-
-
-                            case DragEvent.ACTION_DRAG_ENTERED:
-
-                                // Applies a green tint to the View. Return true; the return value is ignored.
-                              //     v.setBackgroundColor(getResources().getColor(R.color.colorDiceGreen, view.getContext().getTheme()));
-
-                                // Invalidate the view to force a redraw in the new tint
-                                tileView.invalidate();
-
-                                return true;
-
-                            case DragEvent.ACTION_DRAG_LOCATION:
-
-                                // Ignore the event
-                                return true;
-
-                            case DragEvent.ACTION_DRAG_EXITED:
-
-                                // Re-sets the color tint to blue. Returns true; the return value is ignored.
-//                                view.setBackgroundColor(getResources().getColor(R.color.colorGray, view.getContext().getTheme()));
-
-                                // Invalidate the view to force a redraw in the new tint
-                                view.invalidate();
-
-                                return true;
-
-                            case DragEvent.ACTION_DROP:
-
-                                if(player.placeDice(((VwDice) draggedView).getDice(), coord[0], coord[1])){
-                                    view.setImageDrawable(((VwDice) draggedView).getDrawable());
-                                    view.setEnabled(false);
-                                    draggedView.setVisibility(View.GONE);
-          //                          hasPlayed = true;
-                                }
-
-                                // Turns off any color tints
-                  //              view.setBackgroundColor(getResources().getColor(R.color.colorWhite, view.getContext().getTheme()));
-
-                                // Invalidates the view to force a redraw
-                                view.invalidate();
-
-                                // Returns true. DragEvent.getResult() will return true.
-                        //        FloatingActionButton fab = activity.findViewById(R.id.fabNextTurn);
-
-//                                fab.show();
-                                return true;
-
-                            case DragEvent.ACTION_DRAG_ENDED:
-
-                                // Turns off any color tinting
-                                view.setBackgroundColor(getResources().getColor(R.color.colorWhite, view.getContext().getTheme()));
-
-                                // Invalidates the view to force a redraw
-                                view.invalidate();
-
-                                // Does a getResult(), and displays what happened.
-                                if (event.getResult()) {
-                                    Toast.makeText(draggedView.getContext(), "Dice Placed, end turn by pressing floating button.", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(draggedView.getContext(), "Please drop on a valid cell on the board.", Toast.LENGTH_LONG).show();
-                                }
-
-                                // returns true; the value is ignored.
-                                return true;
-
-                            // An unknown action type was received.
-                            default:
-                                Log.e("DragDrop", "Unknown action type received by OnDragListener.");
-                                break;
-                        }
-                    else if(hasPlayed){
-                        Toast.makeText(draggedView.getContext(), "Dice Placed, end turn by pressing floating button.", Toast.LENGTH_LONG).show();
-                    }
-                }
-            } else hasPlayed = false;
-            view.setBackgroundColor(getResources().getColor(R.color.colorWhite, view.getContext().getTheme()));
-            return false;
-        });
-    }*/
-
     private int[] getCellCoordinates(ImageView view) {
         for (int row = 0; row < 7; row++) {
             for (int col = 0; col < 6; col++) {
@@ -296,15 +167,6 @@ public class playActivity extends AppCompatActivity {
     private ImageView getTblCell(int x, int y) {
         TableRow row = (TableRow) playBoard.getChildAt(x);
         return (ImageView) row.getChildAt(y);
-    }
-
-    public void onTileSelected(){
-        viewTileList.forEach(viewTile -> viewTile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                highlightValidPosition(viewTile.getTile());
-            }
-        }));
     }
 
     private void generateBoard(){
@@ -389,9 +251,6 @@ public class playActivity extends AppCompatActivity {
 
                         // Invalidates the view to force a redraw
                         view.invalidate();
-
-                        // Returns true. DragEvent.getResult() will return true.
-                      //  FloatingActionButton fab = activity.findViewById(R.id.fabNextTurn);
 
                       //  fab.show();
                         return true;
@@ -496,50 +355,5 @@ public class playActivity extends AppCompatActivity {
         });
     }
 
-    public void highlightValidPosition(Tile selectedTile){
-        ArrayList<Point> points = gameController.getValidPositions(selectedTile, gameController.getGameBoard());
-        Toast.makeText(this, "points="+points.size(), Toast.LENGTH_SHORT).show();
-
-        for(int i=0;i<7;i++)
-            for (int j=0;j<6;j++){
-                Point point = new Point(i,j);
-                for(Point point1 : points){
-                    if(point1.equals(point)){
-                        ImageView image = getTblCell(i,j);
-                        image.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                        //Toast.makeText(this, "point are available", Toast.LENGTH_SHORT).show();
-
-                    }
-                }
-            }
-    }
-
-    public void initDragDropDView1() {
-        viewTileList.forEach(viewTile -> viewTile.setOnTouchListener((v, event) -> {
-            float xDown = 0;
-            float yDown = 0;
-
-            switch (event.getActionMasked()) {
-
-                case MotionEvent.ACTION_DOWN:
-                    xDown = event.getX();
-                    yDown = event.getY();
-                    break;
-
-                case MotionEvent.ACTION_MOVE:
-                    float xMoved, yMoved;
-                    xMoved = event.getX();
-                    yMoved = event.getY();
-
-                    float distanceX = xMoved - xDown;
-                    float distanceY = yMoved - yDown;
-
-                    v.setX(distanceX);
-                    v.setY(distanceY);
-                default:v.performClick();
-            }
-            return true;
-        }));
-    }
 
 }

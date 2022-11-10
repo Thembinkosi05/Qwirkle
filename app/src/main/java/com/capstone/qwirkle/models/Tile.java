@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Tile  implements Serializable {
+    private static final long serialVersionUID = 70L;
 
     public enum Colour{ PURPLE,BLUE,GREEN,YELLOW,ORANGE,RED}
 

@@ -8,6 +8,7 @@ import com.capstone.qwirkle.messages.client.Join;
 import com.capstone.qwirkle.messages.client.PlaceTile;
 import com.capstone.qwirkle.messages.client.Quit;
 import com.capstone.qwirkle.messages.client.SetHandle;
+import com.capstone.qwirkle.messages.server.GameStarted;
 import com.capstone.qwirkle.messages.server.handleSet;
 import com.capstone.qwirkle.models.Player;
 import com.capstone.qwirkle.models.Tile;
@@ -28,7 +29,6 @@ public class PlayerClient {
 
     private BlockingQueue<Message> outgoingMessages;
     private MessageReceiver messageReceiver;
-    private StartGame startGame;
     String username;
 
     // Thread that reads messages from the server.
@@ -46,19 +46,13 @@ public class PlayerClient {
         try {
             outgoingMessages.put(message);
         } catch (InterruptedException e) {
-            Log.e("ChatClient", e.getMessage());
+            Log.e("playerClient", e.getMessage());
         }
     }
 
-    public PlayerClient(MessageReceiver messageReceiver, StartGame startGame) {
+    public PlayerClient(MessageReceiver messageReceiver) {
         super();
         outgoingMessages = new LinkedBlockingQueue<>();
-        this.messageReceiver = messageReceiver;
-        this.startGame =startGame;
-    }
-
-
-    public void setMessageReceiver(MessageReceiver messageReceiver) {
         this.messageReceiver = messageReceiver;
     }
 
@@ -144,7 +138,6 @@ public class PlayerClient {
                     // Read message from server.
                     msg = (Message) in.readObject();
                     Log.i(TAG, ">> " + msg);
-
                     // If Message Receiver given, pass it the message.
                     if (messageReceiver != null) messageReceiver.messageReceived(msg);
                 } while (msg.getClass() != Quit.class);

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -11,10 +12,12 @@ import android.widget.Toast;
 
 import com.capstone.qwirkle.PlayerClient;
 import com.capstone.qwirkle.R;
+import com.capstone.qwirkle.controller.GameController;
 import com.capstone.qwirkle.messages.Message;
 import com.capstone.qwirkle.messages.client.*;
 import com.capstone.qwirkle.messages.server.*;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class ConnectActivity extends AppCompatActivity {
@@ -31,6 +34,7 @@ public class ConnectActivity extends AppCompatActivity {
         waitingScreen = new CustomWaitingScreen(ConnectActivity.this);
         ip_address = findViewById(R.id.ip_address);
         username = findViewById(R.id.playerName);
+        ip_address.setText("10.112.33.33");
 
     }
 
@@ -48,18 +52,27 @@ public class ConnectActivity extends AppCompatActivity {
         }
         Log.i("ChatClient", "Connecting to " + serverAddress + " as " + handle);
 
-        client = new PlayerClient(message -> runOnUiThread(() -> addMessage(message)), () -> runOnUiThread(this::startPlaying));
+        client = new PlayerClient(message -> runOnUiThread(() -> addMessage(message)));
 
         runOnUiThread(() -> waitingScreen.startWaitingDialog());
         client.connect(serverAddress, handle);
     }
 
-    public void startPlaying() {
-        waitingScreen.stopMatchMaking(); //stops the game lobby to take the player to the play screen
+    public void startPlaying(GameController gameController) {
+        waitingScreen.stopMatchMaking(); //stops the game lobby to take the player to the play screen\
+        Toast.makeText(this, "bundle is null."+gameController.getBag(), Toast.LENGTH_SHORT).show();
+
         Intent intent = new Intent(getApplicationContext(), playActivity.class);
+        intent.putExtra("gameController", (Parcelable) gameController);
         startActivity(intent);
     }
     public void addMessage(Message message) {
-        waitingScreen.addMessage(message);
+        if(message instanceof GameStarted) {
+            GameStarted gameStarted = ((GameStarted) message);
+            GameController gameController = (GameController) gameStarted.gameController;
+            Toast.makeText(this, "bundle is null."+gameController.getBag().size(), Toast.LENGTH_LONG).show();
+            //startPlaying(gameController);
+        }
+       // waitingScreen.addMessage(message);}
     }
 }
